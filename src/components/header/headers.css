@@ -1,0 +1,76 @@
+.control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-left: 350px;
+}
+.research {
+  width: 900px;
+  height: 32px;
+  border-radius: 19px;
+  font-size: 20px;
+  margin-right: 55px;
+  outline: none;
+  padding: 0 20px;
+  padding-left: 40px;
+}
+.input-container {
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  pointer-events: none;
+  width: 40px;
+  font-size: 20px;
+  color: black;
+}
+.button-trash {
+  height: 48px;
+  width: 139px;
+  margin-top: 10px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-color: #ffffff;
+  background: transparent;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 0 0 0 20px;
+}
+.link-trash {
+  text-decoration: none;
+  color: inherit;
+}
+.bascket-shop {
+  position: relative;
+  left: 45px;
+  top: 6px;
+  font-size: 19px;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-entry {
+  height: 48px;
+  width: 139px;
+  margin-top: 10px;
+  display: flex;
+  border-radius: 24px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.link-entry {
+  text-decoration: none;
+  color: inherit;
+}
