@@ -1,0 +1,107 @@
+.main-form {
+  border: solid 1px #000;
+  display: flex;
+  flex-direction: column;
+  width: 590px;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  padding-bottom: 70px;
+  border-radius: 48px;
+  background-color: #fff;
+  position: absolute;
+}
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-name {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #000;
+}
+.login-password {
+  margin-bottom: 20px;
+  width: 556px;
+  height: 5vh;
+  border-radius: 26.5px;
+  font-size: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  color: #000;
+  background-color: #fff;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: black;
+}
+.forgot-password {
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-left: 30px;
+  color: gray;
+  margin-top: -10px;
+}
+.button-auth-entry {
+  width: 556px;
+  height: 60px;
+  margin-top: 20px;
+  border-radius: 16px;
+  color: #fff;
+  background-color: #000;
+  font-size: 18px;
+}
+.button-auth-regist {
+  width: 556px;
+  height: 60px;
+  margin-top: 10px;
+  border-radius: 16px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  font-size: 18px;
+}
+.error-from {
+  text-align: center;
+  color: red;
+  margin: 10px 0 0;
+}
+.input-row {
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+}
+.regist-password {
+  width: 230px;
+  border-radius: 26.5px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  font-size: 20px;
+  border: 2px solid #000;
+  padding-left: 15px;
+  background-color: #fff;
+}
+.regist-second-password {
+  width: 230px;
+  border-radius: 26.5px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  border: 2px solid #000;
+  padding-left: 15px;
+  height: 4vh;
+  background-color: #fff;
+}
+h3 {
+  color: #000;
+  align-self: flex-start;
+  padding-left: 30px;
+  margin-top: -2px;
+}
