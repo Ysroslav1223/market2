@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "001",
+      "email": "aroslavzvonok876@gmail.com",
+      "name": "Звонок Ярослав Александрович",
+      "role_id": 0,
+      "password": "qwerty123"
+    },
+    {
+      "id": "73c3",
+      "email": "wqsdqwd@sqsqd.con",
+      "name": "Иванов Иван Иванович",
+      "role_id": 1,
+      "password": "123456"
+    },
+    {
+      "id": "04d7",
+      "email": "goygelg@mail.ru",
+      "name": "Иванов Иван Иванович",
+      "role_id": 1,
+      "password": "222222"
+    },
+    {
+      "id": "2b8e",
+      "email": "alicesushkina101121@gmail.com",
+      "name": "Иванов Иван Иванович",
+      "role_id": 1,
+      "password": "123456"
+    }
+  ]
+}
