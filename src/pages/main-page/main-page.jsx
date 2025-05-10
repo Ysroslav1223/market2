@@ -14,10 +14,12 @@ export const MainPage=()=>{
       <div className="main-img">
         <ImageMainPage />
       </div>
+      <div className="main-card-img">
       <Card id={"card-left"} imageSrc={imgOne} name='Смартфоны' className='card-img'/>
       <Card id={"card-centerOne"}imageSrc={imgSecond} name='Планшеты' className='card-img'/>
       <Card id={"card-centerSecond"} imageSrc={imgThird} name='Ноутбуки' className='card-img'/>
       <Card id={"card-right"} imageSrc={imgFourth} name='Наушники' className='card-img'/>
+      </div>
     </div>
     )
 }

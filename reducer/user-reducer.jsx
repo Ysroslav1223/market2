@@ -1,5 +1,5 @@
 import { ACTION_TYPE } from "../action/action-type";
-import { ROLE } from "../src/components/ROLE";
+import  ROLE  from "../constatns/ROLE";
 
 const initialState = {
   id: null,
@@ -7,7 +7,6 @@ const initialState = {
   name: null,
   password:null,
   roleId:ROLE.GUEST,
-  session: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -17,6 +16,10 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
       };
+    }
+    case ACTION_TYPE.SET_LOGOUT:{
+      return initialState
+      
     }
     default:
       return state;

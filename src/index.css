@@ -39,3 +39,60 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;    /* Запрещаем скролл */
+}
+
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: auto;      /* Можно auto, если вдруг потребуется скроллить страницу вниз */
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 2.2em;
+  }
+  body {
+    padding: 8px;
+  }
+}
+
+/* Для мобильных */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.2;
+  }
+  body {
+    padding: 4px;
+  }
+  button {
+    font-size: 1em;
+    padding: 6px 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-container {
+    padding: 24px 12px;
+    border-radius: 18px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Для реально маленьких ноутбуков */
+@media (max-width: 900px) {
+  .main-container {
+    padding: 10px 2px;
+    border-radius: 10px;
+  }
+}

@@ -4,13 +4,15 @@ import { Button } from '../../components/header/components/buttons'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup";
-import { authorize } from './auth'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from '../../../action/set-user'
-import { useState } from 'react'
+
 import { AuthFormError } from './auth-error'
-import { selectUserRole } from '../../../selectors/select-user-role'
-import { ROLE } from '../../components/ROLE'
+import { useNavigate } from 'react-router-dom'
+
+import  ROLE  from '../../../constatns/ROLE'
+import { authEntry } from '../../../utils/authEntry'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../../action/set-user'
 
 
 
@@ -30,10 +32,10 @@ const authFormScheme=yup.object().shape({
 
 
 export const AuthorizeFrom=()=>{
-    const roleId=useSelector(selectUserRole)
-    const[serverError,setServerError]=useState(null)
-    const dispatch=useDispatch()
 
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
    
 
@@ -45,22 +47,30 @@ export const AuthorizeFrom=()=>{
         resolver:yupResolver(authFormScheme)
     })
 
-    const onSubmit=({email,password})=>{
-        authorize(email,password).then(({error,res})=>{
-            if(error){
-                setServerError(`${error}`)
-            }
-            dispatch(setUser(res))
-        })
-    }
+    const[serverError,setServerError]=useState('')
 
+   const onSubmit = ({email, password}) => {
+  authEntry('http://localhost:3000/auth', "POST", {email, password})
+    .then(data => {
+      if (data.error) {
+        setServerError(data.error);
+        console.log('ошибка входа');
+        return;
+      }
+      console.log(data);
+      sessionStorage.setItem('userData', JSON.stringify(data.user));
+      dispatch(setUser(data.user))
+      navigate('/');
+    })
+    .catch(error => {
+      setServerError(error.message);
+      console.log('ошибка входа');
+    });
+}
 
-    const formError=errors?.email?.message||errors?.password?.message
+    const formError=errors?.password?.message||errors?.name?.message||errors?.email?.message
     const errorMessage = formError||serverError
 
-    if(roleId!==ROLE.GUEST){
-        return <Navigate to='/'/>
-    }
 
     return(
         <div className='main-form'>
@@ -70,8 +80,8 @@ export const AuthorizeFrom=()=>{
                 <input type='password' className='login-password'placeholder="Введите пароль..."{...register('password')}/>
                 <Link className='forgot-password'>Забыли пароль?</Link>
                 <Button id={'auth-entry'}>Войти</Button>
-                {errorMessage&&<AuthFormError>{errorMessage}</AuthFormError>}
                 <Link to='/regist'><Button id={'auth-regist'}>Регистрация</Button></Link>
+                {errorMessage&&<AuthFormError>{errorMessage}</AuthFormError>}
             </form>
         </div>
     )

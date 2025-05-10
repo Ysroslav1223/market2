@@ -1,10 +1,10 @@
 
 
 
-export const Button=({id,children})=>{
+export const Button=({id,children,onClick})=>{
     return(
         <div>
-            <button className={`button-${id}`}>{children}</button>
+            <button className={`button-${id}`} onClick={onClick}>{children}</button>
         </div>
     )
 }

@@ -88,6 +88,7 @@ input:-webkit-autofill {
   border: 2px solid #000;
   padding-left: 15px;
   background-color: #fff;
+  color: #000;
 }
 .regist-second-password {
   width: 230px;
@@ -98,6 +99,7 @@ input:-webkit-autofill {
   padding-left: 15px;
   height: 4vh;
   background-color: #fff;
+  color: #000;
 }
 h3 {
   color: #000;

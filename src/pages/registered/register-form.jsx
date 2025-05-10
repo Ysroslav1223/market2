@@ -4,17 +4,23 @@ import '../authorize/authorize-from.css'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../action/set-user";
-import { useNavigate } from "react-router-dom";
+ import { useDispatch } from "react-redux";
+ import { useNavigate } from "react-router-dom";
 import { AuthFormError } from "../authorize/auth-error";
-import {registed} from './regist'
+import { setUser } from '../../../action/set-user'
+import { request } from "../../../utils/request";
+
 
 
 const regFormScheme=yup.object().shape({
     name: yup.string()
     .required('Заполните ФИО')
     .matches(/^[A-Za-zА-Яа-яЁё\s]+$/, 'Можно вводить только буквы')
+    .test(
+    'is-full-name',
+    'Введите полные Фамилию Имя Отчество',
+    value => value && value.trim().split(/\s+/).length === 3
+  )
     .min(10)
     .max(60),
     email: yup
@@ -51,17 +57,16 @@ export const RegisterForm=()=>{
     })
 
     const onSumit=({email,name,password})=>{
-        registed(email,name,password).then(({error,res})=>{
+        request('http://localhost:3000/register',"POST",{email,name,password}).then(({error,user})=>{
             if(error){
-                setServerError(`${error}`)
+                setServerError('Ошибка запроса')
                 return
             }
-            dispatch(setUser(res))
-
-            if(res!==null){
-                navigate('/')
-    
-            }
+            
+            dispatch(setUser(user))
+            console.log(user);
+            sessionStorage.setItem('useData',JSON.stringify(user))
+            navigate('/');
         })
     }
   

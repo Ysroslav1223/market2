@@ -5,27 +5,18 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { selectUserRole } from '../../../selectors/select-user-role';
-import { selectUserName } from '../../../selectors/select-user-name';
-import { ROLE } from '../ROLE';
+import { useFormatUserName } from '../../../hooks/use-format-user-name';
+
+import  ROLE  from '../../../constatns/ROLE.js';
 
 export const Header = () => {
 
   const roleId= useSelector(selectUserRole)
-  const nameUser=useSelector(selectUserName)
-
- const formatUserName=(name)=>{
-
-  if(name!==null){
-    const splitName=name.split(' ')
-     const lastName=splitName[0]
-      const middleName=`${splitName[2][0]}.`
-       const firstName=`${splitName[1][0]}.`
+  console.log(roleId);
   
-     return `${lastName} ${firstName}${middleName}`
-  }
-  }
 
-   const formattedName=formatUserName(nameUser)
+   const formattedName=useFormatUserName()
+  console.log(formattedName)
 
 
   return (
@@ -33,7 +24,7 @@ export const Header = () => {
       <div className="control-panel">
         <Input  />
         <AiOutlineShoppingCart className='bascket-shop'/>
-        <Link className='link-trash'to='/bascket'><Button id={"trash"}>Корзина</Button></Link>
+        <Link className='link-trash'to='/bascket'><Button id={"trash"} >Корзина</Button></Link>
         {roleId===ROLE.GUEST? (
         <Link  className='link-entry' to='/auth'><Button id={"entry"}>Вход</Button>
           </Link>
