@@ -1,0 +1,32 @@
+
+.basker-card{
+    margin-bottom: 20px;
+}
+.welcome{
+    width: 90vh;
+    position: relative;
+    left: 15%;
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+}
+.ourbuy{
+    color: #fff;
+    position: relative;
+    right: 3%;
+}
+.profile{
+     width: 90vh;
+    position: relative;
+    left: 15%;
+    display: flex;
+    color: #fff;
+}
+.text{
+    width: 150vh;
+    position: relative;
+    left: 8%;
+    display: flex;
+    color: #fff;
+    font-size: 20px
+}

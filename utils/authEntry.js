@@ -4,6 +4,7 @@ export function authEntry(url,method,data){
         headers:{
             "content-type":"application/json"
         },
+        credentials:'include',
         body: JSON.stringify({
             email:data.email,
             password: data.password

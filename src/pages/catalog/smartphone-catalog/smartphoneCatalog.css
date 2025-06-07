@@ -1,0 +1,59 @@
+body{
+overflow-x: hidden;
+}
+.card-catalog-phone{
+    position: relative;
+    display: flex;
+    gap: 5vh;
+    margin-left: 5vh;
+    top: 10%;
+}
+.catalog-filter{
+display: grid;
+grid-template-columns: repeat(4, 250px); 
+gap:5vh;
+margin-left: 5vh;
+}
+.title-catalog{
+  margin-left: 5vh;
+}
+.main-routing{
+  text-decoration: none;
+  color: rgb(179, 175, 175);
+}
+.routing{
+   padding-top: 60px;
+   padding-bottom: 20px;
+   padding-left: 5vh;
+}
+.btn-container{
+  gap:100px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   left: 15%;
+}
+.btn-poor,.btn-exp{
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  font-size: 15px;
+  width: 250px;
+  background:none;
+  transition: background 0.3s, color 0.3s; 
+
+}
+.btn-all{
+  color: #fff;
+   border: 1px solid #fff;
+  border-radius: 20px;
+  font-size: 15px;
+  width: 120px;
+  background:none;
+  transition: background 0.3s, color 0.3s
+}
+.btn-poor:hover, .btn-exp:hover, .btn-all:hover {
+    background: #fff;      
+    color: #333;          
+    border: 1px solid #fff;
+}

@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom"
 
-export const Card=({ id, imageSrc,name })=>{
+export const Card=({ id, imageSrc,name,to,onClick })=>{
     return(
-        <div className={`card ${id}`}>
+        <div className={`card ${id}`} onClick={onClick}>
         <div className="card-top">
         <div className="card-name">{name}</div>
-          <a href="#" className="card-img">
+          <Link to={to} className="card-img">
             <img src={imageSrc} alt="card-image"/>
-          </a>
+          </Link>
         </div>
         <div className="card-bottom">
         </div>
