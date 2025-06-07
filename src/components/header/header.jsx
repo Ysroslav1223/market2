@@ -8,7 +8,6 @@ import { selectUserRole } from '../../../selectors/select-user-role';
 import { useFormatUserName } from '../../../hooks/use-format-user-name';
 import { RiBellLine } from "react-icons/ri";
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { setSearchProducts } from '../../../action/set-search-products.jsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +18,6 @@ import  ROLE  from '../../../constatns/ROLE.js';
 export const Header = () => {
 
   const roleId= useSelector(selectUserRole)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   
   const[searchQuery,setSearchQuary]=useState('')
