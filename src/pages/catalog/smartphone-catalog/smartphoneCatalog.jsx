@@ -1,11 +1,13 @@
 import './smartphoneCatalog.css'
 import { HeaderScroll } from '../../../components/header/header-scroll/header-scroll'
-import { CardOfCatalog } from '../card-of-catalog/card-of-catalog'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Footer } from '../../../components/footer/footer'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { CardOfLaptop } from '../components/card-of-laptop/card-of-laptop'
+import { CardOfSmartphone } from '../components/card-of-smartphone/card-of-smartphone'
+import { CardOfHeadphones } from '../components/card-of-headphopnes/card-of-headphones'
 
 
 
@@ -60,9 +62,39 @@ export const SmartphoneCatalog=()=>{
                 <div>
                      {type==='smartphone'?<h2 className='title-catalog'>Iphone</h2>:''}
                      {type==='tablet'?<h2 className='title-catalog'>iPad</h2>:''}
+                     {type==='laptop'?<div>
+                        <h2 className='title-catalog'>MacBook</h2>
+                         <div className='catalog-filter'>
+                                {cheapProducts.map((data)=>(
+                                    <CardOfLaptop  
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/smartphone/${data.id}`}
+                                    />
+                                ))}
+                            </div>
+                     </div>:''}
+                     {type==='headphones'?<div>
+                          <h2 className='title-catalog'>AirPods</h2>
+                        <div className='catalog-filter'>
+                                {cheapProducts.map((data)=>(
+                                    <CardOfHeadphones  
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/smartphone/${data.id}`}
+                                    />
+                                ))}
+                            </div>
+                     </div>:''}
                 <div className='catalog-filter'>
                                 {cheapProducts.map((data)=>(
-                                    <CardOfCatalog  
+                                    <CardOfSmartphone  
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -81,9 +113,39 @@ export const SmartphoneCatalog=()=>{
                 <div>
                      {type==='smartphone'?<h2 className='title-catalog'>Iphone</h2>:''}
                      {type==='tablet'?<h2 className='title-catalog'>iPad</h2>:''}
+                     {type==='laptop'?<div>
+                        <h2 className='title-catalog'>MacBook</h2>
+                        <div className='catalog-filter'>
+                                {cheapProducts.map((data)=>(
+                                    <CardOfLaptop  
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                     to={`/posts/tablet/${data.id}`}
+                                    />
+                                ))}
+                            </div>
+                     </div>:""}
+                     {type==='headphones'?<div>
+                        <h2 className='title-catalog'>AirPods</h2>
+                        <div className='catalog-filter'>
+                                {cheapProducts.map((data)=>(
+                                    <CardOfHeadphones  
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                     to={`/posts/tablet/${data.id}`}
+                                    />
+                                ))}
+                            </div>
+                     </div>:''}
                 <div className='catalog-filter'>
                                 {cheapProducts.map((data)=>(
-                                    <CardOfCatalog  
+                                    <CardOfSmartphone  
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -107,7 +169,7 @@ export const SmartphoneCatalog=()=>{
                             <h2 className='title-catalog'>Iphone 16</h2>
                                 <div className='card-catalog-phone'>
                                     {iphone16.map((data)=>(
-                                        <CardOfCatalog  
+                                        <CardOfSmartphone  
                                         key={data.id}
                                         id={data.id}
                                         name={data.name}
@@ -120,7 +182,7 @@ export const SmartphoneCatalog=()=>{
                             <h2 className='title-catalog'>Iphone 15</h2>
                                 <div className='card-catalog-phone'>
                                     {iphone15.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -132,7 +194,7 @@ export const SmartphoneCatalog=()=>{
                             <h2 className='title-catalog'>Iphone 14</h2>
                                 <div className='card-catalog-phone'>
                                     {iphone14.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -144,7 +206,7 @@ export const SmartphoneCatalog=()=>{
                                 <h2 className='title-catalog'>Iphone 13</h2>
                                 <div className='card-catalog-phone'>
                                     {iphone13.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -159,13 +221,13 @@ export const SmartphoneCatalog=()=>{
                      case "tablet":{
                         const tablet25 = smartphone.filter((e)=>e.generation===25)
                         const tablet24 = smartphone.filter((e)=>e.generation===24)
-                        const tablet22 = smartphone.filter((e)=>e.generation===22)
+                        const tablet22 = smartphone.filter((e)=>e.generation===23)
                         return(
                             <div>
                                 <h2 className='title-catalog'>iPad 2025</h2>
                                 <div className='card-catalog-phone'>
                                      {tablet25.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -178,7 +240,7 @@ export const SmartphoneCatalog=()=>{
                                     <h2 className='title-catalog'>iPad 2024</h2>
                                     <div className='card-catalog-phone'>
                                         {tablet24.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -191,7 +253,7 @@ export const SmartphoneCatalog=()=>{
                                         <h2 className='title-catalog'>iPad 2024</h2>
                                     <div className='card-catalog-phone'>
                                         {tablet22.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data.id}
                                     id={data.id}
                                     name={data.name}
@@ -205,13 +267,118 @@ export const SmartphoneCatalog=()=>{
                             </div>
                         )
                      } 
+                     case "headphones":{
+
+                        const headphonesMax = smartphone.filter((e)=>e.generation===30)
+                        const headphones4 = smartphone.filter((e)=>e.generation===31)
+                        const headphones3 = smartphone.filter((e)=>e.generation===32)
+                        const headphones2 = smartphone.filter((e)=>e.generation===33)
+                        return(
+                            <div>
+                                
+                                 <h2 className='title-catalog'>Apple AirPods Max</h2>
+                                <div className='card-catalog-phone'>
+                                     {headphonesMax.map((data)=>(
+                                    <CardOfHeadphones 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/tablet/${data.id}`}/>
+                                ))}
+                                </div>
+                                  <h2 className='title-catalog'>Apple AirPods 4</h2>
+                                 <div className='card-catalog-phone'>
+                                     {headphones4.map((data)=>(
+                                    <CardOfHeadphones 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/tablet/${data.id}`}/>
+                                ))}
+                                </div>
+                                  <h2 className='title-catalog'>Apple AirPods 3</h2>
+                                 <div className='card-catalog-phone'>
+                                     {headphones3.map((data)=>(
+                                    <CardOfHeadphones 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/tablet/${data.id}`}/>
+                                ))}
+                                </div>
+                                  <h2 className='title-catalog'>Apple AirPods 2</h2>
+                                 <div className='card-catalog-phone'>
+                                     {headphones2.map((data)=>(
+                                    <CardOfHeadphones 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/tablet/${data.id}`}/>
+                                ))}
+                                </div>
+                            </div>
+                        )
+                     } 
+                     case "laptop":{
+                        const laptop14 = smartphone.filter((e)=>e.generation===40)
+                        const laptop13 = smartphone.filter((e)=>e.generation===41)
+                        const laptop12 = smartphone.filter((e)=>e.generation===42)
+                        return(
+                            <div>
+                                 <h2 className='title-catalog'>MacBook Pro 2024</h2>
+                                <div className='catalog-filter'>
+                                     {laptop14.map((data)=>(
+                                    <CardOfLaptop 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/laptop/${data.id}`}/>
+                                ))}
+                                </div>
+                                  <h2 className='title-catalog'>MacBook Air</h2>
+                                <div className='catalog-filter'>
+                                     {laptop13.map((data)=>(
+                                    <CardOfLaptop 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/laptop/${data.id}`}/>
+                                ))}
+                                </div>
+                                  <h2 className='title-catalog'>MacBook Pro 14</h2>
+                                <div className='catalog-filter'>
+                                     {laptop12.map((data)=>(
+                                    <CardOfLaptop 
+                                    key={data.id}
+                                    id={data.id}
+                                    name={data.name}
+                                    imageSrc={data.image}
+                                    price={data.price}
+                                    to={`/posts/laptop/${data.id}`}/>
+                                ))}
+                                </div>
+                            </div>
+                        )
+                     }
                      case "search":{
                         return(
                             <div>
                                  <h2 className='title-catalog'>Найденый товар</h2>
                                 <div className='catalog-filter'>
                                      {searchProduct.map((data)=>(
-                                    <CardOfCatalog 
+                                    <CardOfSmartphone 
                                     key={data._id}
                                     id={data.id}
                                     name={data.name}

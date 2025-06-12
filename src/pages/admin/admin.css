@@ -1,0 +1,149 @@
+.setting-control{
+    position: absolute;
+    top:20%;
+    left: 5%;
+    display: grid;
+    align-items: center; 
+    row-gap: 15px; 
+    gap:10px;
+    font-size: 20px;
+}
+.add-title{
+    position: absolute;
+    left:10%;
+    top:10%
+}
+.setting-control > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.setting-control label {
+    width: 200px;
+    min-width: 200px;
+}
+.name{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.price-goods{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.category{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.image{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.generation{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.name-input{
+    width: 300px;
+    background-color: #fff;
+    height: 20px;
+font-size: 18px;
+    border: none;
+  border-bottom: 1px solid #777777;
+  background-color: transparent;
+  outline: none;
+}
+.price-input{
+    width: 300px;
+    background-color: #fff;
+     height: 20px;
+     font-size: 18px;
+      border: none;
+  border-bottom: 1px solid #777777;
+  background-color: transparent;
+  outline: none;
+}
+.category-input{
+    width: 300px;
+    background-color: #fff;
+     height: 20px;
+     font-size: 18px;
+      border: none;
+  border-bottom: 1px solid #777777;
+  background-color: transparent;
+  outline: none;
+}
+.image-input{
+    width: 300px;
+    background-color: #fff;
+     height: 20px;
+     font-size: 18px;
+      border: none;
+  border-bottom: 1px solid #777777;
+  background-color: transparent;
+  outline: none;
+}
+.generation-input{
+    width: 300px;
+    background-color: #fff;
+     height: 20px;
+     font-size: 18px;
+      border: none;
+  border-bottom: 1px solid #777777;
+  background-color: transparent;
+  outline: none;
+}
+.title-add-example{
+    position: absolute;
+    left:65%;
+    bottom: 81%;
+}
+.setting-expamle{
+    position: absolute;
+    left: 60%;
+    top:21%;
+    display: grid;
+    align-items: center; 
+    row-gap: 15px; 
+    gap:10px;
+    font-size: 20px;
+}
+.setting-expamle > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.setting-expamle label {
+    width: 200px;
+    min-width: 200px;
+}
+.title-review{
+    position: absolute;
+    left:70%;
+    top:45%
+}
+.review{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left:60%;
+    top:55%;
+    font-size: 20px;
+    gap:2px
+}
+.category-review{
+    padding-right: 20px;
+}
+.review-generation{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left:60%;
+    top:60%;
+    font-size: 20px;
+    gap:2px
+}

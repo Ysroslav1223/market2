@@ -36,6 +36,33 @@ export async function auth(email,password){
     return {token,user}
 }
 
+export async function updatePass(email,password,newPassword,newPasschek){
+
+    if(newPassword!==newPasschek){
+        throw new Error('Новый пароль не совпадает с проверкой')
+    }
+
+    const user = await User.findOne({email})
+
+     if(!user){
+        throw new Error('Введите корректный email')
+    }
+
+    const isMatch = await bcrypt.compare(password,user.password)
+
+    if(!isMatch){
+        throw new Error('Старый пароль не верный')
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword,10)
+
+    user.password =hashedNewPassword
+
+    await user.save()
+
+    return 'Пароль успешно обновлен';
+}
+
 
 export function getUser(){
     return User.find()

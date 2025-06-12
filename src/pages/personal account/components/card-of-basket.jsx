@@ -4,12 +4,14 @@ import { RxCrossCircled } from "react-icons/rx";
 
 
 
-export const CardOfBasket=({imgSrc,name,price,onDelete,onCountChange,count})=>{
+export const CardOfBasket=({imgSrc,name,price,onDelete,onCountChange,count,isPersonalAccount = false,})=>{
 
 
     return(
         <div className="card-basket">
-            <button className='delete' onClick={onDelete}><RxCrossCircled /></button>
+            {!isPersonalAccount&&(
+                <button className='delete' onClick={onDelete}><RxCrossCircled /></button>
+            )}
             <div>
                 <img src={imgSrc} className="img-basket"/>
             </div>
@@ -20,9 +22,13 @@ export const CardOfBasket=({imgSrc,name,price,onDelete,onCountChange,count})=>{
                 {`${price} ₽`}
             </h2>
             <div className='count-product-basket'>
-                <button disabled={count===1} onClick={()=>onCountChange(-1)} className='minus-count'>-</button>
-                <span className='count-product'>{count}</span>
-            <button onClick={()=>onCountChange(1)}className='plus-count'>+</button>
+                {!isPersonalAccount?(
+                    <>
+                    <button disabled={count===1} onClick={()=>onCountChange(-1)} className='minus-count'>-</button>
+                    <span className='count-product'>{count}</span>
+                <button onClick={()=>onCountChange(1)}className='plus-count'>+</button>
+                </>
+                ):(<div className='count-product-buy'>Количество: {count}</div>)}
             </div>
         </div>
     )

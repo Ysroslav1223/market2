@@ -39,3 +39,18 @@ if (index === -1) {
     res.status(500).json({ message: 'Ошибка сервера' });
   }
 }
+export async function deleteAllBasket(req,res){
+    try{
+        const userId = req.user.id
+
+        const basket = await Basket.findOne({userId})
+        if (!basket)
+      return res.status(404).json({ message: 'Корзина не найдена' });
+
+        await Basket.deleteOne({ userId });
+        
+        return res.status(200).json({ message: 'Корзина успешно удалена' });
+    }catch (error) {
+        return res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+}
+}

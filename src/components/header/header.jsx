@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSearchProducts } from '../../../action/set-search-products.jsx';
 import { useNavigate } from 'react-router-dom';
-
+import { IoSettingsOutline } from "react-icons/io5";
 
 
 import  ROLE  from '../../../constatns/ROLE.js';
@@ -67,6 +67,9 @@ export const Header = () => {
         
        />
        <button className="btn-search" onClick={handleSearch}>найти</button>
+       {roleId===ROLE.ADMIN?(
+        <Link to='/admin' className='setting'><IoSettingsOutline/></Link>
+       ):''}
         <AiOutlineShoppingCart className='bascket-shop'/>
         <Link className='link-trash' to="/personAcc?tab=bascket"><Button id={"trash"} >Корзина</Button></Link>
         {roleId===ROLE.GUEST? (

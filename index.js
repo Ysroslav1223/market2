@@ -17,6 +17,8 @@ import mapPosts from "./helper/mapPosts.js";
 import Basket from './models/Basket.js'
 import mapBasket from "./helper/mapBasket.js";
 import { deleteBasket } from "./controller/baskets.js";
+import { deleteAllBasket } from "./controller/baskets.js";
+import { updatePass } from "./controller/user.js";
 
 
 const port = 3000;
@@ -51,6 +53,16 @@ app.post("/auth", async (req, res) => {
     res.status(500).json({ succsess: false, error: e.message });
   }
 });
+
+app.post('/updatePass',async(req,res)=>{
+  try{
+    const updatePassword = await updatePass(req.body.email,req.body.password, req.body.newPassword,req.body.newPasscheck)
+
+    res.send({error: null, password:updatePassword})
+  } catch (e) {
+    res.status(500).json({ succsess: false, error: e.message });
+  }
+})
 
 app.post('/logout',(req,res)=>{
   res.cookie('token','',{httpOnly:true}).send({})
@@ -136,7 +148,6 @@ app.put('/update',authenticated,async(req,res)=>{
 
     item.count = count; 
     await basket.save();
-    
     res.send({ success: true, basket: mapBasket(basket) });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -144,6 +155,8 @@ app.put('/update',authenticated,async(req,res)=>{
 })
 
 app.delete('/delete',authenticated,deleteBasket)
+
+app.delete('/deleteAll',authenticated,deleteAllBasket)
 
 app.use(authenticated)
 

@@ -74,7 +74,7 @@ export const MainPage=()=>{
      <Card to='/posts/smartphone'id={"card-left"} imageSrc={imgOne} name='Смартфоны' className='card-img'/>
       <Card to='/posts/tablet'id={"card-centerOne"}imageSrc={imgSecond} name='Планшеты' className='card-img'/>
       <Card to='/posts/laptop'id={"card-centerSecond"} imageSrc={imgThird} name='Ноутбуки' className='card-img'/>
-      <Card id={"card-right"} imageSrc={imgFourth} name='Наушники' className='card-img'/>
+      <Card to='/posts/headphones'id={"card-right"} imageSrc={imgFourth} name='Наушники' className='card-img'/>
       </div>
       <Footer/>
     </div>

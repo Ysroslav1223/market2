@@ -16,11 +16,10 @@
     right: 3%;
 }
 .profile{
-     width: 90vh;
-    position: relative;
-    left: 15%;
-    display: flex;
-    color: #fff;
+   display: flex;
+   flex-direction: column;
+   color:#fff;
+   gap:15px
 }
 .text{
     width: 150vh;
@@ -29,4 +28,53 @@
     display: flex;
     color: #fff;
     font-size: 20px
+}
+.list-buy{
+    position: relative;
+    right:20%
+}
+.info-person{
+    position: relative;
+    font-size: 25px;
+    margin-bottom: 15px;
+    left:7%
+}
+.title-profile{
+    position: relative;
+    left: 7%;
+    font-size: 30px;
+}
+.int-data{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    left:7%;
+    width: 420px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 20px;
+    font-size: 20px;
+    height: 28px;
+    border: 3px solid #000;
+    padding-left: 15px;
+}
+.save-btn{
+    width: 350px;
+    color: #fff;
+    background: none;
+    border: 2px solid #fff;
+    position: relative;
+    left:7%;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+    margin-bottom: 50px;
+    
+}
+.save-btn:hover{
+    background-color: #fff;
+    color: #000;
+}
+.int-data:focus{
+    border: 3px solid#fff;
 }

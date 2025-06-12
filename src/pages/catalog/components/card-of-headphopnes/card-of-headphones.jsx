@@ -1,0 +1,19 @@
+import { Link } from "react-router-dom"
+import './card-of-headphones.css'
+
+
+export const CardOfHeadphones=({id,to,imageSrc,price,name})=>{
+    return(
+        <div className={`card-catalog ${id}`}>
+        <div className="card-catalog-top">
+          <Link to={to} >
+            <img src={imageSrc} alt="card-image" className="card-headphones-img"/>
+          </Link>
+        </div>
+        <div className="card-catalog-bottom">
+            <div className="card-headphones-name">{name}</div>
+            <div className="card-headphones-price">{`от ${price}₽`}</div>
+        </div>
+      </div>
+    )
+}

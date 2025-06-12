@@ -40,3 +40,9 @@ width: 1900px;
     max-width:100%;
   }
  }
+ @media (min-width: 1770px) {
+    .header-scroll{
+    position: fixed;
+    max-width:100%;
+  }
+    }

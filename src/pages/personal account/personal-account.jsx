@@ -12,19 +12,26 @@ import { FaHouse } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { getBasket } from "./components/get-basket";
 import { setBasket } from "../../../action/set-basket";
+import { setBuyBasket } from "../../../action/set-buy-basket";
+import ROLE from '../../../constatns/ROLE'
+import { selectUserRole } from "../../../selectors/select-user-role";
+
 
 export const PersonalAccount=()=>{
 
       const location = useLocation();
 
+
     const params = new URLSearchParams(location.search);
-    const initialSection = params.get('tab') || 'profile';
+    const initialSection = params.get('tab') || 'personal';
 
     const [activeSection, setActiveSection] = useState(initialSection);
+
     
     const navigate = useNavigate()
      const dispatch=useDispatch()
      const basket = useSelector(state=>state.basket)
+     const roleId = useSelector(selectUserRole)
 
     const logout = ()=>{
         fetch('http://localhost:3000/logout', {
@@ -63,6 +70,26 @@ useEffect(() => {
   
   setTotalPrice(calculateTotal());
 }, [basket]);
+
+const deleteBasket=()=>{
+    fetch(`http://localhost:3000/deleteAll`,{
+      method:"delete",
+      credentials: 'include' 
+    }).then(res=>res.json())
+  }
+
+const handleBuyWithoutLog=()=>{
+  alert('Требуется авторизвция')
+  navigate('/auth')
+}
+const handleBuyProducts=async()=>{
+  setActiveSection('personal')
+  const buyingProducts=await getBasket()
+  dispatch(setBuyBasket(buyingProducts))
+ deleteBasket(dispatch(setBasket([])))
+
+  
+}
     
     return(
         <div className="container">
@@ -72,7 +99,10 @@ useEffect(() => {
             <div className="buttonpers">
                 <Button id={`us`} onClick={()=>setActiveSection('about')}>О нас</Button>
                 <Button id={'person'} onClick={()=>setActiveSection('personal')}>Личный кабинет</Button>
+              {roleId!==ROLE.GUEST?(
                 <Button id={'acc'} onClick={()=>setActiveSection('profile')}>Профиль</Button>
+              ):<Button id={'acc-close'}  disabled={true}>Профиль</Button>}
+                
                 <Button id={'shop'} onClick={()=>setActiveSection('bascket')}>Корзина</Button>
 
                 {activeSection==='bascket'&&(
@@ -86,7 +116,9 @@ useEffect(() => {
                             <span>Итого :</span>
                             <span className="total-price"> {totalPrice.toLocaleString('ru-RU')}₽ </span>
                         </div>
-                        <button className="buy">купить</button>
+                        {roleId!==ROLE.GUEST?(
+                          <button className="buy" onClick={handleBuyProducts}>купить</button>
+                        ):<button className="buy" onClick={handleBuyWithoutLog}>купить</button>}
                     </div>
                 )}
             </div>

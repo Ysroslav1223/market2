@@ -9,7 +9,7 @@ import { ProductPage } from './pages/poductPage/product-page'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../action/set-user'
-import { Footer } from './components/footer/footer'
+import { Admin } from './pages/admin/admin'
 
 function App() {
   const dispatch = useDispatch()
@@ -35,6 +35,7 @@ function App() {
         <Route path='/personAcc' element={<PersonalAccount/>}/>
         <Route path='/posts/:type' element={<SmartphoneCatalog/>}/>
         <Route path='/posts/:type/:id' element={<ProductPage/>}/>
+        <Route path='/admin' element={<Admin/>}/>
       </Routes>
     </div>
   )
