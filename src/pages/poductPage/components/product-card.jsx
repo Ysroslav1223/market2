@@ -32,14 +32,15 @@ export const ProductCard=({imgSrc,name,price})=>{
 })
 .then(res => res.json())
 .then(res => {
+  alert('товар добавлен в корзину')
     if (res && res.basket && res.basket.item) {
         dispatch(setAddBasket(res.basket.item))
-    if(roleId===2){
-      navigate('/auth')
-    }
   }})
 .catch(err => {
+  if(roleId===2){
+      navigate('/auth')
     alert(`Ошибка: ${err.message}`);
+    }
 });
   }
       const handleSave = (id,names,prices)=>{
