@@ -54,7 +54,6 @@ export const RenderContent=(activeSection)=>{
        console.log(buyBasket);
 
        const[serverError,setServerError]=useState('')
-       const[succsess,setSuccsess]=useState('')
 
 
        const{register,handleSubmit,formState:{errors}}=useForm({
@@ -86,7 +85,7 @@ export const RenderContent=(activeSection)=>{
               if(res.error){
                 setServerError(res.error);
               }else{
-                setSuccsess('Пароль успешно сменен');
+                alert('Пароль успешно сменен')
               }
             })
            }
@@ -206,11 +205,10 @@ export const RenderContent=(activeSection)=>{
                         <form className="content-section profile" onSubmit={handleSubmit(onSubmit)}>
                         <span className="info-person">Изменить пароль</span>
                         <input className="int-data" placeholder="Email" {...register('email')}/>
-                        <input className="int-data" placeholder="Старый пароль" {...register('password')}/>
-                        <input className="int-data" placeholder="Новый пароль" {...register('newPassword')}/>
-                        <input className="int-data" placeholder="Новый пароль еще раз" {...register('newPasscheck')}/>
+                        <input className="int-data" type='password'placeholder="Старый пароль" {...register('password')}/>
+                        <input className="int-data" type='password' placeholder="Новый пароль" {...register('newPassword')}/>
+                        <input className="int-data"  type='password' placeholder="Новый пароль еще раз" {...register('newPasscheck')}/>
                          {errorMessage&&<AuthFormError>{errorMessage}</AuthFormError>}
-                         {succsess}
                         <button className="save-btn">Сохранить изменения</button>
                         </form>
                     </div>
