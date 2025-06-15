@@ -19,6 +19,7 @@ import mapBasket from "./helper/mapBasket.js";
 import { deleteBasket } from "./controller/baskets.js";
 import { deleteAllBasket } from "./controller/baskets.js";
 import { updatePass } from "./controller/user.js";
+import Posts from "./models/Posts.js";
 
 
 const port = 3000;
@@ -182,6 +183,61 @@ app.delete('/users/:id',hasrole([ROLE.ADMIN]),async (req,res)=>{
   await deleteUser(req.params.id)
 
   res.send({error:null})
+})
+
+app.post('/addPost',hasrole([ROLE.ADMIN]),async(req,res)=>{
+  try{
+    Posts.create({
+      name: req.body.name,
+      price:req.body.price,
+      category:req.body.category,
+      image:req.body.image,
+      generation:req.body.generation
+    })
+
+
+    res.send({success:true,error:null})
+  } catch(e){
+    res.status(500).json({error:e.message})
+  }
+})
+
+app.delete('/deleteCard',hasrole([ROLE.ADMIN]),async(req,res)=>{
+    try{
+      const {id}= req.body
+      const result = await Posts.deleteOne({_id:id})
+       if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Товар с таким ID не найден' });
+    }
+    res.status(200).json({message:'Товар успешно удален'})
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Ошибка при удалении товара' });
+  }
+})
+
+app.put('/updateCard',hasrole([ROLE.ADMIN]),async(req,res)=>{
+  try{
+    const {id,name,price} = req.body
+    const updateData={}
+    if(name) updateData.name = name
+    if(price) updateData.price = price.toString().trim();
+    
+
+    const result = await Posts.updateOne(
+      {_id:id},
+      {$set:updateData}
+    )
+    
+    if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: 'Товар не найден или данные не изменены' });
+        }
+        res.status(200).json({ message: 'Товар успешно обновлен', updatedFields: updateData });
+       
+  }catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+    }
 })
 
 mongoose

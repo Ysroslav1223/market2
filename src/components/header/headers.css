@@ -117,7 +117,7 @@ width: 900px;
   text-decoration: none;
   color: inherit;
 }
-@media (min-width: 1390px)and (max-width:1769px){
+@media (min-width: 1290px)and (max-width:1769px){
   .control-panel{
     position: relative;
     right: 7%;

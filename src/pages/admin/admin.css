@@ -8,6 +8,26 @@
     gap:10px;
     font-size: 20px;
 }
+.link-control{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top:2%;
+    left:3%;
+    gap:2px
+}
+.main-page-link{
+     text-decoration: none;
+    color: rgb(179, 175, 175);;
+}
+.setting-person{
+     text-decoration: none;
+    color: rgb(179, 175, 175);;
+}
+.list-of-all{
+    text-decoration: none;
+    color: rgb(179, 175, 175);;
+}
 .add-title{
     position: absolute;
     left:10%;
@@ -21,6 +41,27 @@
 .setting-control label {
     width: 200px;
     min-width: 200px;
+}
+.add-posts{
+    color: #000;
+    width: 200px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 60px;
+    margin-left: 130px;
+    background: none;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    transition:  background 0.3s, color 0.3s;
+}
+.add-posts:hover{
+    background: #fff;      
+    color: #333;          
+    border: 2px solid #fff;
 }
 .name{
     display: flex;

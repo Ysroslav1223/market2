@@ -1,33 +1,110 @@
 import './admin.css'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from 'react';
+import { AuthFormError } from '../authorize/auth-error';
+import { Link, Navigate } from 'react-router-dom';
+
+
+
+const postAddScheme = yup.object().shape({
+    name:yup.string()
+    .required('Заполните навзание') 
+    .max(50, 'Название не может содержать более 50 символов'),
+    price:yup.string()
+    .required('Заполните цену')
+    .max(7),
+    category: yup.string()
+    .required('Заполните категорию ')
+    .max(10),
+    image: yup.string()
+    .required('Добавьте URL изображения')
+    .url('Введите корректный URL изображения'),
+    generation: yup.number()
+    .required('Заполните поколение')
+    .max(100)
+})
 
 export const Admin =()=>{
+
+    const[serverError,setServerError]=useState('')
+
+
+
+    const {register,handleSubmit,formState:{errors}}=useForm({
+           defaultValues:{
+              name:'',
+              category:'',
+              image:'',
+              generation: 0
+           },
+           resolver:yupResolver(postAddScheme)
+       })
+
+       const onSubmit = ({name,price,category,image,generation})=>{
+        console.log({name});
+        try{
+
+            fetch(`http://localhost:3000/addPost`,{
+                method:"POST",
+                headers:{
+                     "content-type":"application/json"
+                },
+                   credentials:'include',
+                   body: JSON.stringify({
+                    name:name,
+                    price:price,
+                    category:category,
+                    image:image,
+                    generation: generation
+                   })
+            }).then((res)=>res.json())
+        }catch(e){
+            if(e.error){
+                setServerError(e.message)
+            }
+        }
+       }
+       const formError=errors?.password?.message||errors?.name?.message||errors?.email?.message
+        const errorMessage = formError||serverError
+
         return(
             <div>
+                <div className='link-control'>
+                    <Link className='main-page-link' to='/'>Главная страница/</Link>
+                    <Link className='setting-person' to='/personAcc'>Пользователь/</Link>
+                    <Link className='list-of-all' to="/posts/allProducts">Список всех товаров</Link>
+                </div>
+                
+                   
                 <div>
                     <h2 className='add-title'>Добавление товара</h2>
                 </div>
-                <div className="setting-control">
+                <form className="setting-control" onSubmit={handleSubmit(onSubmit)}>
                     <div className="name">
                         <label>Название товара:</label>
-                        <input className='name-input'/>
+                        <input className='name-input' {...register('name')}/>
                     </div>
                     <div className="price-goods">
                         <label>Цена товара:</label>
-                        <input className='price-input'/>
+                        <input className='price-input' {...register('price')}/>
                     </div >
                     <div className="category">
                        <label>Категория товара:</label> 
-                        <input className='category-input'/>
+                        <input className='category-input' {...register('category')}/>
                     </div>
                     <div className="image">
                         <label>Картинка товара URL</label>
-                        <input className='image-input'/>
+                        <input className='image-input' {...register('image')}/>
                     </div>
                     <div className="generation">
                         <label>Поколение товара:</label>
-                        <input className='generation-input'/>
+                        <input className='generation-input' {...register('generation')}/>
                     </div>
-                </div>
+                    {errorMessage&&<AuthFormError>{errorMessage}</AuthFormError>}
+                 <button className='add-posts' type='submit'>Добавить</button>
+                </form>
                 <div>
                     <h2 className='title-add-example'>Пример добавления товара</h2>
                     <div className='setting-expamle'>
@@ -51,23 +128,6 @@ export const Admin =()=>{
                         <label>Поколение товара:</label>
                         <input className='generation-input' placeholder='16' disabled={true}/>
                     </div>
-                    </div>
-                </div>
-                <div>
-                    <h2 className='title-review'>Обзор</h2>
-                    <div className='review'>
-                        <label className='category-review'>Категория товаров:</label>
-                        <span>smartphone/</span>
-                        <span>tablet/</span>
-                        <span>laptop/</span>
-                        <span>headphones/</span>
-                    </div>
-                    <div className='review-generation'>
-                         <label className='generaton-review'>Поколение товаров:</label>
-                         <span>с 13 по 16 Iphone в зависимости от поколений</span>
-                         <span>с 23 по 25 Ipad в зависимости от года</span>
-                         <span>с 30 по 33 AirPods- 33 поколение  самое старое</span>
-                         <span>с 40 по 42 MacBook- 42 поколение самое старое</span>
                     </div>
                 </div>
             </div>

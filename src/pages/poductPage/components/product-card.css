@@ -117,3 +117,14 @@ height: 48px;
    padding-bottom: 20px;
    padding-left: 2.7vh;
 }
+.save{
+  color: #fff;
+  background: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+.save:hover{
+  background: #fff;
+  color: #000;
+}
