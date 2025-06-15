@@ -10,6 +10,7 @@
     color: #fff;
     flex-direction: column;
 }
+
 .ourbuy{
     color: #fff;
     position: relative;
@@ -77,4 +78,16 @@
 }
 .int-data:focus{
     border: 3px solid#fff;
+}
+@media (min-width: 1090px)and (max-width:1769px){
+  .text{
+     position: relative;
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify; 
+
+  }
 }
