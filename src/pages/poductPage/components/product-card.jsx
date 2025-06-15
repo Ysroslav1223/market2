@@ -6,9 +6,13 @@ import './product-card.css'
 import { Footer } from '../../../components/footer/footer'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectUserRole } from '../../../../selectors/select-user-role'
+
 export const ProductCard=({imgSrc,name,price})=>{
 
   const {id}=useParams()
+  const roleId = useSelector(selectUserRole)
   const dispatch=useDispatch()
   const navigate=useNavigate()
    const [names, setName] = useState(""); 
@@ -29,10 +33,13 @@ export const ProductCard=({imgSrc,name,price})=>{
 .then(res => res.json())
 .then(res => {
     if (res && res.basket && res.basket.item) {
-        dispatch(setAddBasket(res.basket.item));
+        dispatch(setAddBasket(res.basket.item))
+    if(roleId===2){
+      navigate('/auth')
+    }
   }})
 .catch(err => {
-    alert("Ошибка запроса: " + err.message);
+    alert(`Ошибка: ${err.message}`);
 });
   }
       const handleSave = (id,names,prices)=>{
@@ -55,6 +62,8 @@ export const ProductCard=({imgSrc,name,price})=>{
       alert("Не удалось сохранить изменения!");
     });
       }
+     
+
       
 
   const returnNavigate=()=>{
@@ -92,6 +101,7 @@ export const ProductCard=({imgSrc,name,price})=>{
       </div>
     </div>
     {!isEditMode? <div className="action-btns">
+     
       <Button id={'buy'} onClick={addProduct}>Купить</Button>
       <Button id={'trash-product'}>В корзину</Button>
     </div>:

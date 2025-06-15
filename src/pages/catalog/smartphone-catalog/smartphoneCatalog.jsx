@@ -22,7 +22,8 @@ export const SmartphoneCatalog=()=>{
 
     const roleId = useSelector(selectUserRole)
     const navigate= useNavigate()
-
+const searh =window.location.pathname
+const searchType = searh==='/posts/search'
 
     const[smartphone,setSmartphone]=useState([])
     const [groupedProducts, setGroupedProducts] = useState({});
@@ -526,7 +527,7 @@ setSmartphone((prevSmartphones) => {
            <Link className='main-routing' to='/'>Главная страница</Link>
            {roleId===ROLE.ADMIN?<Link className='main-routing' to='/admin'>/Добавление товара </Link>:''}
            </div>
-            {type==="serach"?<div className='btn-container'>
+            {!searchType?<div className='btn-container'>
             <button className='btn-poor' onClick={()=>setSortType("cheap")}>Сначала дешевле</button>
             <button className='btn-exp'  onClick={()=>setSortType("expensive")}>Сначала дороже</button>
             <button className='btn-all'  onClick={()=>setSortType("all")}>Все</button>

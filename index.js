@@ -122,7 +122,14 @@ app.post('/add', authenticated, async (req, res) => {
 
     res.send({ success: true, basket:mapBasket(basket) });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Ошибка при добавлении товара:', err);
+       let errorMessage = "Произошла ошибка при добавлении товара";
+    if (err.name === 'CastError') {
+      errorMessage = "Неверный формат ID товара";
+    } else if (err.name === 'ValidationError') {
+      errorMessage = "Ошибка валидации данных";
+    }
+    res.status(500).json({ error: errorMessage});
   }
 });
 

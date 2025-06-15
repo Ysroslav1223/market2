@@ -9,6 +9,11 @@ export default async function(req,res,next){
 
         const user = await User.findOne({_id: tokenData.id})
 
+        if(!tokenData){
+            res.send({error:'Ошибка аунтификации'})
+            return
+        }
+
         if (!user){
             res.send({error:'Ошибка аунтификации'})
             return
