@@ -465,7 +465,6 @@ setSmartphone((prevSmartphones) => {
                                                         name={data.name}
                                                         imageSrc={data.image}
                                                         price={data.price}
-                                                        to={`/posts/search/${data.id}`}
                                                         onDelete={()=>handleDelete(data.id)}
                                                         onEdit={()=>handleEdit(data.id)}/>
                                                 ))}
@@ -477,7 +476,7 @@ setSmartphone((prevSmartphones) => {
                                                         name={data.name}
                                                         imageSrc={data.image}
                                                         price={data.price}
-                                                        to={`/posts/search/${data.id}`}
+                                                        
                                                         onDelete={()=>handleDelete(data.id)}  />
                                                 ))}
                                             </div>:''}
@@ -488,7 +487,6 @@ setSmartphone((prevSmartphones) => {
                                                         name={data.name}
                                                         imageSrc={data.image}
                                                         price={data.price}
-                                                        to={`/posts/search/${data.id}`}
                                                         onDelete={()=>handleDelete(data.id)}/>
                                                 ))}
                                             </div>:""}
@@ -499,7 +497,7 @@ setSmartphone((prevSmartphones) => {
                                                         name={data.name}
                                                         imageSrc={data.image}
                                                         price={data.price}
-                                                        to={`/posts/search/${data.id}`}
+                                                        
                                                         onDelete={()=>handleDelete(data.id)}/>
                                                 ))}
                                             </div>:''}

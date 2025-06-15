@@ -208,7 +208,7 @@ export const RenderContent=(activeSection)=>{
                         <input className="int-data" type='password'placeholder="Старый пароль" {...register('password')}/>
                         <input className="int-data" type='password' placeholder="Новый пароль" {...register('newPassword')}/>
                         <input className="int-data"  type='password' placeholder="Новый пароль еще раз" {...register('newPasscheck')}/>
-                         {errorMessage&&<AuthFormError>{errorMessage}</AuthFormError>}
+                         <div className="error">{errorMessage}</div>
                         <button className="save-btn">Сохранить изменения</button>
                         </form>
                     </div>

@@ -30,6 +30,12 @@
     color: #fff;
     font-size: 20px
 }
+.error{
+    display: flex;
+    color: red;;
+    position: relative;
+    left: 13%;
+}
 .list-buy{
     position: relative;
     right:20%
