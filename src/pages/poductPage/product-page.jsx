@@ -9,6 +9,8 @@ export const ProductPage=()=>{
     const {id}=useParams()
     const[product,setProduct]=useState([])
 
+
+
     useEffect(()=>{
         try{
             fetch(`http://localhost:3000/posts/${id}`,{

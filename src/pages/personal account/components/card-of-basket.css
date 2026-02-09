@@ -22,7 +22,20 @@
 }
 .count-product{
   color: #000;
-  font-size: 10px;
+  position: absolute;
+  left:50%;
+  top:35%;
+  font-size: 15px;
+}
+.count-product-buy{
+   color: #000;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
 }
 .count-product-basket{
   position: absolute;
@@ -52,15 +65,21 @@
 .title-backet-product{
 display: flex;
 justify-content: center;
+position: absolute;
+bottom:54%;
+left:20%;
+color:#000;
 align-items: center;
 margin-left: 10vh;
 font-size: 20px;
 }
 .price-backet-product{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  position: relative;
-  left: 30%;
+  position: absolute;
+  left: 80%;
+  top:25%;
+  color:#000;
   font-size: 20px;
 }

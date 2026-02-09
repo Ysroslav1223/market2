@@ -17,6 +17,9 @@ import mapPosts from "./helper/mapPosts.js";
 import Basket from './models/Basket.js'
 import mapBasket from "./helper/mapBasket.js";
 import { deleteBasket } from "./controller/baskets.js";
+import { deleteAllBasket } from "./controller/baskets.js";
+import { updatePass } from "./controller/user.js";
+import Posts from "./models/Posts.js";
 
 
 const port = 3000;
@@ -51,6 +54,16 @@ app.post("/auth", async (req, res) => {
     res.status(500).json({ succsess: false, error: e.message });
   }
 });
+
+app.post('/updatePass',async(req,res)=>{
+  try{
+    const updatePassword = await updatePass(req.body.email,req.body.password, req.body.newPassword,req.body.newPasscheck)
+
+    res.send({error: null, password:updatePassword})
+  } catch (e) {
+    res.status(500).json({ succsess: false, error: e.message });
+  }
+})
 
 app.post('/logout',(req,res)=>{
   res.cookie('token','',{httpOnly:true}).send({})
@@ -109,7 +122,14 @@ app.post('/add', authenticated, async (req, res) => {
 
     res.send({ success: true, basket:mapBasket(basket) });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Ошибка при добавлении товара:', err);
+       let errorMessage = "Произошла ошибка при добавлении товара";
+    if (err.name === 'CastError') {
+      errorMessage = "Неверный формат ID товара";
+    } else if (err.name === 'ValidationError') {
+      errorMessage = "Ошибка валидации данных";
+    }
+    res.status(500).json({ error: errorMessage});
   }
 });
 
@@ -136,7 +156,6 @@ app.put('/update',authenticated,async(req,res)=>{
 
     item.count = count; 
     await basket.save();
-    
     res.send({ success: true, basket: mapBasket(basket) });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -144,6 +163,8 @@ app.put('/update',authenticated,async(req,res)=>{
 })
 
 app.delete('/delete',authenticated,deleteBasket)
+
+app.delete('/deleteAll',authenticated,deleteAllBasket)
 
 app.use(authenticated)
 
@@ -169,6 +190,61 @@ app.delete('/users/:id',hasrole([ROLE.ADMIN]),async (req,res)=>{
   await deleteUser(req.params.id)
 
   res.send({error:null})
+})
+
+app.post('/addPost',hasrole([ROLE.ADMIN]),async(req,res)=>{
+  try{
+    Posts.create({
+      name: req.body.name,
+      price:req.body.price,
+      category:req.body.category,
+      image:req.body.image,
+      generation:req.body.generation
+    })
+
+
+    res.send({success:true,error:null})
+  } catch(e){
+    res.status(500).json({error:e.message})
+  }
+})
+
+app.delete('/deleteCard',hasrole([ROLE.ADMIN]),async(req,res)=>{
+    try{
+      const {id}= req.body
+      const result = await Posts.deleteOne({_id:id})
+       if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Товар с таким ID не найден' });
+    }
+    res.status(200).json({message:'Товар успешно удален'})
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Ошибка при удалении товара' });
+  }
+})
+
+app.put('/updateCard',hasrole([ROLE.ADMIN]),async(req,res)=>{
+  try{
+    const {id,name,price} = req.body
+    const updateData={}
+    if(name) updateData.name = name
+    if(price) updateData.price = price.toString().trim();
+    
+
+    const result = await Posts.updateOne(
+      {_id:id},
+      {$set:updateData}
+    )
+    
+    if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: 'Товар не найден или данные не изменены' });
+        }
+        res.status(200).json({ message: 'Товар успешно обновлен', updatedFields: updateData });
+       
+  }catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+    }
 })
 
 mongoose

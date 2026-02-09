@@ -12,8 +12,6 @@ export const Footer=()=>{
             <div className='catalog-content'>
                 <h2>Каталог</h2>
                 <Link>Техника Apple</Link>
-                <Link>Техника Samsung</Link>
-                <Link>Техника PlayStation</Link>
             </div>
             <div>
                 <h2 className='title-footer'>Контакты</h2>

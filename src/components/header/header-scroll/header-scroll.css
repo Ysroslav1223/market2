@@ -34,9 +34,15 @@ width: 1900px;
   gap: 6px;
 
 }
- @media (min-width:1390px) and (max-width:1769px){
+ @media (min-width:1290px) and (max-width:1769px){
   .header-scroll{
     position: fixed;
     max-width:100%;
   }
  }
+ @media (min-width: 1770px) {
+    .header-scroll{
+    position: fixed;
+    max-width:100%;
+  }
+    }

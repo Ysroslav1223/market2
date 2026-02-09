@@ -1,4 +1,5 @@
-import img16e from './16e.png'
+import img16e from './Group 92.png'
+
 
 export const ImageMainPage=()=>{
     return(
